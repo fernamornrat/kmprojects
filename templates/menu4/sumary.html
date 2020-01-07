@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}  สรุป{% endblock title %}
+{% block content %}
+<section id="create" class="bg-light py-4"><br>
+    <h2 class="text-center"><i class="fas fa-chart-bar"></i> สรุปจำนวนการทดลอง/โครงการ</h2><br>
+    <div class="container"><br>
+        <!-- รายวิชา -->
+        <h4 class="text-left"><i class="fas fa-microscope"></i> การทดลอง</h4><hr><br>
+            <div class="card-group">
+                <!-- รายวิชาฟิสิกส์ -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="m-b-0"><i class="mdi mdi-briefcase-check text-info"></i></h2>
+                                <h6 class="card-subtitle"><i class="fas fa-atom"></i> รายวิชาฟิสิกส์</h6><br>
+                                <h4 class="text-right"> {{ physicsum }} การทดลอง</h4>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- รายวิชาเคมี-->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="m-b-0"><i class="mdi mdi-alert-circle text-success"></i></h2>
+                                <h6 class="card-subtitle"><i class="fas fa-vial"></i> รายวิชาเคมี</h6><br>
+                                <h4 class="text-right">{{ chemsum }} การทดลอง</h4>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- รายวิชาชีววิทยา -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="m-b-0"><i class="mdi mdi-wallet text-purple"></i></h2>
+                                <h6 class="card-subtitle"><i class="fas fa-seedling"></i> รายวิชาชีววิทยา</h6><br>
+                                <h4 class="text-right">{{ biosum }} การทดลอง</h4>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- โครงงานวิทยาศาสตร์ -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="m-b-0"><i class="mdi mdi-wallet text-purple"></i></h2>
+                                <h6 class="card-subtitle"><i class="fas fa-award"></i> โครงงานวิทยาศาสตร์</h6><br>
+                                <h4 class="text-right">{{ scisum }} การทดลอง</h4>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><br><br>
+
+        <!-- โครงการ -->
+        <h4 class="text-left"><i class="fas fa-sitemap"></i> โครงการ</h4><hr><br>
+        <div class="card-group">
+            <!-- การประชุม -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="m-b-0"><i class="mdi mdi-briefcase-check text-info"></i></h2>
+                            <h6 class="card-subtitle"><i class="fas fa-calendar-alt"></i> การประชุม</h6><br>
+                            <h4 class="text-right"> {{ meetsum }} โครงการ</h4>
+                        </div>
+                        <div class="col-12">
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ฝึกอบรม -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="m-b-0"><i class="mdi mdi-alert-circle text-success"></i></h2>
+                            <h6 class="card-subtitle"><i class="fas fa-business-time"></i> ฝึกอบรม</h6><br>
+                            <h4 class="text-right">{{ trainsum }} โครงการ</h4>
+                        </div>
+                        <div class="col-12">
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สัมมนา -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="m-b-0"><i class="mdi mdi-wallet text-purple"></i></h2>
+                            <h6 class="card-subtitle"><i class="fas fa-address-card"></i> สัมมนา</h6><br>
+                            <h4 class="text-right">{{ seminsum }} โครงการ</h4>
+                        </div>
+                        <div class="col-12">
+                            <div class="progress">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- เสวนา -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="m-b-0"><i class="mdi mdi-wallet text-purple"></i></h2>
+                            <h6 class="card-subtitle"><i class="fas fa-bullhorn"></i> เสวนา</h6><br>
+                            <h4 class="text-right">{{ consum }} โครงการ</h3>
+                        </div>
+                        <div class="col-12">
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} รายวิชาโครงงานวิทยาศาสตร์ {% endblock title %}
+{% block content %}
+    <section id="create" class="bg-light py-4">
+    <div class="container-fluid"><br>
+         <h2 class="text-center"><i class="fas fa-award"></i> รายวิชาโครงงานวิทยาศาสตร์</h2><br><hr>
+        <!--ตารางแสดงข้อมูล-->
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+            <h4 class="text-center">ระดับมัธยมศึกษาตอนต้น</h4>
+            {% if sciences %}
+                <div class="text-right">{{ sci_countmid }} การทดลอง</div>
+            {% endif %}
+
+                <div class="table-responsive">
+                    <table class="table table-bordered"><br>
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                                <th scope="col">รหัสวิชา</th>
+                                <th scope="col">การทดลองที่</th>
+                                <th scope="col">ชื่อการทดลอง</th>
+                                <th scope="col">จัดการ</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% if sciences %}
+                            {% for sciences in sciences %}
+                                <tr class="text-center" >
+                                    <td>{{ sciences.course_number }}</td>
+                                    <td>{{ sciences.experiment_number }}</td>
+                                    <td>{{ sciences.experiment_name }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                           <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">จัดการ</button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{% url 'science_detail' sciences.id %}"><i class="fas fa-eye"></i> ดูข้อมล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-file-pdf"></i> พิมพ์ข้อมูล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-link"></i> แชร์ออนไลน์</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" class="text-center">ไม่มีข้อมูลการทดลอง</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--pagination -->
+                {% if sciences %}
+                    <div class="col-md-6 mx-auto">
+                        <div class="pagination">
+                            {% if sciences.has_previous %}
+                                <a class="pagination-action" href="?page=1">
+                                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ sciences.previous_page_number }}">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        
+                            <span class="pagination-current">{{ sciences.number }}</span>
+                            <span class="pagination-of">of</span>
+                            <span class="pagination-total">{{ sciences.paginator.num_pages }}</span>
+                        
+                            {% if sciences.has_next %}
+                                <a class="pagination-action" href="?page={{ sciences.next_page_number }}">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ sciences.paginator.num_pages }}">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6 mx-auto">
+            <h4 class="text-center">ระดับมัธยมศึกษาตอนปลาย</h4>
+            {% if science %}
+                <div class="text-right">{{ sci_counthi }} การทดลอง</div>
+            {% endif %}
+
+                <div class="table-responsive">
+                    <table class="table table-bordered"><br>
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                                <th scope="col">รหัสวิชา</th>
+                                <th scope="col">การทดลองที่</th>
+                                <th scope="col">ชื่อการทดลอง</th>
+                                <th scope="col">จัดการ</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% if science %}
+                            {% for science in science %}
+                                <tr class="text-center" >
+                                    <td>{{ science.course_number }}</td>
+                                    <td>{{ science.experiment_number }}</td>
+                                    <td>{{ science.experiment_name }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                           <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">จัดการ</button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{% url 'science_detail' science.id %}"><i class="fas fa-eye"></i> ดูข้อมล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-file-pdf"></i> พิมพ์ข้อมูล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-link"></i> แชร์ออนไลน์</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" class="text-center">ไม่มีข้อมูลการทดลอง</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--pagination -->
+                {% if science %}
+                    <div class="col-md-6 mx-auto">
+                        <div class="pagination">
+                            {% if science.has_previous %}
+                                <a class="pagination-action" href="?page=1">
+                                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ science.previous_page_number }}">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        
+                            <span class="pagination-current">{{ science.number }}</span>
+                            <span class="pagination-of">of</span>
+                            <span class="pagination-total">{{ science.paginator.num_pages }}</span>
+                        
+                            {% if science.has_next %}
+                                <a class="pagination-action" href="?page={{ science.next_page_number }}">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ science.paginator.num_pages }}">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

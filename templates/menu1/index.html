@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}หน้าหลัก{% endblock title %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+
+{% block content %}
+  <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-5">ข้อมูลการจัดการความปลอดภัยจากการทดลองทางวิทยาศาสตร์ ระดับมัธยมศึกษา</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="listings" class="py-5">
+		<div class="container">
+			<div class="nutshell">
+				<h3>ความเป็นมาและความสำคัญของปัญหา</h3><hr>
+				<p style="text-indent: 2.5em;">การศึกษาขั้นพื้นฐานตามหลักสูตรของโรงเรียนระดับมัธยมศึกษากลุ่มสาระการเรียนรู้ที่เน้นสายวิทยาศาสตร์-คณิตศาสตร์ มีการเรียนของกลุ่มสาระวิทยาศาสตร์ในรายวิชาของเคมี 
+					ทุกครั้งที่มีการเรียนและการปฏิบัติการ จะมีการนำสารเคมีมาทดลองและใช้ปฏิบัติการ เมื่อทดลองและปฏิบัติการเสร็จจะทำลายสารเคมีลงในอ่างน้ำซึ่งเป็นวิธีที่ไม่ถูกต้อง อาจทำให้ก่อมลพิษต่อสภาพแวดล้อมภายในโรงเรียน 
+					ส่งผลอันตรายต่อร่างกายของบุคคลในโรงเรียน และการทำความสะอาดอุปกรณ์ทางวิทยาศาสตร์แบบไม่ถูกวิธี ทำให้เกิดความเสียหายต่ออุปกรณ์ทางวิทยาศาสตร์ รวมถึงการสวมใส่อุปกรณ์การป้องกันอันตรายจากสารเคมีอาจไม่ถูกต้องตามสารเคมีแต่ละชนิดที่ใช้ในการเรียนและการปฏิบัติการ 
+					อาจทำให้เกิดความเสียหายต่อร่างกายของผู้ปฏิบัติและมูลค่าของสารเคมีที่ใช้ในการทดลอง ปัญหาที่เกิดขึ้นส่วนใหญ่ครูผู้สอนและผู้เรียนยังขาดทักษะการใช้สารเคมีและอุปกรณ์ทางวิทยาศาสตร์ในการปฏิบัติการในชั้นเรียนที่ถูกต้อง การใช้สารเคมีในการปฏิบัติการหรือการทดลองต่าง ๆ 
+					ควรได้รับการให้ความรู้ที่ถูกต้องจากผู้เชี่ยวชาญและนักวิชาการทางด้านสารเคมีโดยตรงของข้อมูลสารเคมีในเบื้องต้นแต่ละตัวอาจมีการจัดเก็บ การทำลายที่ไม่เหมือนกัน บางชนิดสามารถนำกลับมาใช้ใหม่ได้ บางชนิดมีอันตรายเมื่อสัมผัสผิวหนัง หรือเมื่อสูดดมเข้าไป 
+					และระบบจัดการองค์ความรู้การให้ข้อมูลความปลอดภัยในปฏิบัติการสารเคมีให้ความรู้ถึงรายละเอียดของข้อมูลสารเคมีแต่ละชนิด มีวิธีการแก้ไขปัญหาที่เกิดการจากใช้สารเคมีที่ผิดวิธีและบ่งบอกถึงความอันตรายข้อมูลของสารเคมีให้แต่ละชนิด และบอกถึงการสวมใส่อุปกรณ์ป้องกันอันตรายจากสารเคมีแต่ละชนิด
+					การรับมือหากเกิดข้อผิดพลาดต่างๆ</p>
+			</div><br>
+
+			<!-- slideshow -->
+			<center>
+				<div class="w3-content w3-section" style="max-width:1000px">
+					<a href="{% url 'physic' %}"><img class="mySlides" src="{% static 'img/physic.png'%}" style="width:100%"></a>
+					<a href="{% url 'chemistry' %}"><img class="mySlides" src="{% static 'img/chem.png'%}" style="width:100%"></a>
+					<a href="{% url 'biology' %}"><img class="mySlides" src="{% static 'img/biology.png'%}" style="width:100%"></a>
+					<a href="{% url 'science' %}"><img class="mySlides" src="{% static 'img/science.png'%}" style="width:100%"></a>
+				</div>
+			</center><br>
+
+			<div class="row">
+				<div class="col-md-3 col-lg-6 mb-3"><br>
+					<div class="card listing-preview"><br>
+						<div class="text-center">
+							<h4 class="text-center">ขั้นตอนการทำงาน</h4><hr><br>
+							<img src="{% static 'img/analytics.png'%}" style="width:80px;"><br><br>
+							<p style="text-indent: 2.5em;">เว็บไซต์แบ่งออกเป็น 2 ส่วน<br>
+							1. ผู้ดูแลระบบ ทำหน้าที่จัดการข้อมูลการจัดการความปลอดภัย<br>จากการทดลองทางวิทยาศาสตร์<br>
+							2. ผู้ใช้งานทั่วไป สามารถดูข้อมูลมาตรฐานความปลอดภัย<br>ห้องปฏิบัติการที่ประกอบด้วย 4 หมวด<br> 
+								ได้แก่ รายวิชาฟิสิกส์ เคมี ชีววิทยา และโครงงานวิทยาศาสตร์
+							</p>
+						</div><br>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-lg-6 mb-3"><br>
+					<div class="card listing-preview"><br>
+						<div class="text-center">
+							<h4>ข้อมูลสารสนเทศในเว็บไซต์</h4><hr><br>
+							<img src="{% static 'img/security.png'%}" style="width:80px;"><br><br>
+							<p style="text-indent: 2.5em;">
+							- แสดงบทความ/สาระน่ารู้ข้อมูลมาตรฐานความปลอดภัยห้องปฏิบัติการในรูปแบบ PDF ที่สามารถบันทึกเก็บไว้ใช้งานภายหลังได้<br>
+							<!--- แสดงบทความหมวดหมู่ข่าวสาร/บทความสาระน่ารู้<br>-->
+							- การบริหารจัดการลงทะเบียนเข้าร่วมการประชุม/ฝึกอบรม/สัมมนา/เสวนา<br>
+							- ผู้ใช้งานสามารถใช้งานเมนูถามตอบ<br>
+							- สามารถแสดงเนื้อหาวิดีโอจากเว็บไซต์ Youtube<br>
+							- แชร์ข้อมูลหรือข่าวสารผ่านทาง Social Network</p>
+						</div><br>
+					</div>
+				</div>
+			</div><hr><br>
+
+			<h4 class="text-center">พื้นที่สำหรับแสดงวิดีโอ</h4>
+			<div class="row text-center">
+				<div class="col-md-3 col-lg-6 mb-3"><br>
+					<div class="card listing-preview"><br>
+						<div class="text-center">
+							<iframe width="500" height="315" src="https://www.youtube.com/embed/LocNNWGe0hA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div><br>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-lg-6 mb-3"><br>
+					<div class="card listing-preview"><br>
+						<div class="text-center">
+							<iframe width="500" height="315" src="https://www.youtube.com/embed/UBbl-fWGbPg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div><br>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-lg-6 mb-3"><br>
+					<div class="card listing-preview"><br>
+						<div class="text-center">
+							<iframe width="500" height="315" src="https://www.youtube.com/embed/W7MWG6u2rOo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div><br>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-lg-6 mb-3"><br>
+					<div class="card listing-preview"><br>
+						<div class="text-center">
+							<iframe width="500" height="315" src="https://www.youtube.com/embed/rL4zyRAiK8c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div><br>
+					</div>
+				</div>
+			</div>
+        </div>
+  </section>
+
+  <section id="services" class="py-5 bg-secondary text-white">
+	<footer>
+		<div class="container margin_60">
+			<div class="row">
+				<div class="col-lg-4 col-md-12 p-r-5 text-center">
+					<img src="{% static 'img/experiment (1).png'%}" style="width:84px;"><hr>
+					<p class="">
+						ระบบจัดการองค์ความรู้การให้ข้อมูล<br>ความปลอดภัยในปฏิบัติการสารเคมีในโรงเรียน
+					</p>
+					<!-- counter -->
+					<div class="col-xs-12 mt20" id="bg">
+						<div style="margin:0px auto;width:133px;background:#443c94;text-align:left;display:flex;border-radius:5px">
+							<span style="padding:7px;display:inline-block;border-right:1px solid #746dba">
+								<a href="http://visitorshitcounter.com" rel="nofollow noopener"  target="_blank" title="https://visitorshitcounter.com/"><img src="https://visitorshitcounter.com/img/s-logo.svg" alt="https://visitorshitcounter.com/" style="width:100%;border:none;float:left"></a>
+							</span>
+							<span class="text" id="dupli_hit_counter"   style="padding:10px 0 0 0;display:inline-block;color:#ffffff;width:100%;text-align:center;">
+							</span>
+							<input type="hidden" id="site_val"   value="https://visitorshitcounter.com/counterDisplay?code=f1c7f2dfed7ab88a5f811fae3a4d70c4&style=0017&pad=5&type=page&initCount=0">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-6 ml-lg-auto">
+					<h5>เครือข่ายความร่วมมือ</h5><hr>
+					<p style="text-indent: 1.5em;">โครงการมหาวิทยาลัยแม่ข่ายด้านมาตรฐานความปลอดภัย<br>
+						ห้องปฏิบัติการ สำนักงานการวิจัยแห่งชาติ (วช.)<br>
+						คณะกรรมการมาตรฐานความปลอดภัยที่เกี่ยวข้องกับสารเคมี มหาวิทยาลัยนเรศวร อำเภอเมือง จังหวัดพิษณุโลก</p><hr>
+					<a href="https://www.rmutl.ac.th/" target="blank" ><i class="fas fa-building"></i> มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา ตาก</a>
+				</div>
+				<div class="col-lg-2 col-md-6 ml-lg-auto">
+					<h5>เมนู</h5><hr>
+					<li><a href="{% url 'index' %}"> หน้าหลัก</a></li>
+					<li><a href="{% url 'sumary' %}"> สรุป</a></li>
+					<li><a href="{% url 'comment' %}"> ถาม-ตอบ</a></li>
+					<li><a href="http://localhost:8000/admin/" target="_blank"> เข้าสู่ระบบ</a></li>
+					<li><a href="#"> คู่มือการใช้งาน</a></li>
+				</div>
+			</div>
+		</div>
+	</footer>
+  </section>
+{% endblock content %}   

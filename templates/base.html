@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!-- Custom-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Icons -->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'  crossorigin='anonymous'>
+    <!--font-->
+    <link href="https://fonts.googleapis.com/css?family=Kanit:300,400,500" rel="stylesheet">
+    
+    <title>KIS School Lab Chem | {%block title %}{% endblock title %}</title>
+  </head>
+  <body>
+  
+    <!--navbar-->
+    {% include 'partials/_navbar.html' %}
+            
+    <!--content-->
+    {% block content %} {% endblock content %} 
+
+    <!--footer-->
+    {% include 'partials/_footer.html' %}
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- hit count -->
+    <script src="https://visitorshitcounter.com/js/badgess.js?v=1576395223"></script>
+    <!-- sldeshow -->
+    <script>
+      var myIndex = 0;
+      carousel();
+      
+      function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";  
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}    
+        x[myIndex-1].style.display = "block";  
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+      }
+    </script>
+  </body>
+</html>

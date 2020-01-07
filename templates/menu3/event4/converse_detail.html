@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} โครงการเสวนา {% endblock title %}
+{% block content %}
+    <section id="create" class="bg-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div class="row page-titles">
+                        <div class="col-md-12 align-self-center">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'converse' %}"><i class="fas fa-address-card"></i> การเสวนา</a></li>
+                                <li class="breadcrumb-item active">{% block name %}{{ converse.name }}{% endblock name %}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-info text-white text-center"><br>
+                            <h3> รายละเอียดโครงการ</h3><br>
+                        </div><br>
+                        <div class="card-body">
+                            <form action="{% url 'converse_detail' converse.id %}" method="POST">
+                                {% csrf_token %}
+                                    <div class="form-group">
+                                        <h4>{{ converse.name }}</h4><hr><br>
+                                        <p style="text-indent: 2.5em;">{{ converse.detail }} </p><br>
+                                        <h4>วัน-เวลา</h4>
+                                        <p style="text-indent: 2.5em;">{{ converse.date |date:"d/m/Y"}} | {{ converse.from_time |time:"H:i" }}น. - {{ converse.to_time |time:"H:i" }}น.</p><hr>
+
+                                        <h4>สถานที่</h4>
+                                        <p style="text-indent: 2.5em;">{{ converse.locality }} </p><hr>
+
+                                        <h4>ข้อมูลเพิ่มเติม</h4>
+                                        <a href={{ converse.link }} target="_blank">{{ converse.link }}</a>
+                                    </div><hr>
+
+                                <!--Button-->
+                                <div class="text-center">
+                                    <a href="{% url 'converse' %}" class="btn btn-danger">กลับไปหน้าเสวนา</a>
+                                </div>
+                                <input type="hidden" name="converseid" id="converseid" value="{{ converse.id }}">
+                            </form>
+                        </div>
+                    </div>
+	            </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

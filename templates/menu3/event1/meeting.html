@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} โครงการประชุม {% endblock title %}
+{% block content %}
+    <div class="container"><br><br>
+        <h2 class="text-center"><i class="fas fa-calendar-alt"></i> โครงการประชุม</h2><br><hr>
+        <!--ปุ่มลงทะเบียน-->
+        <div class="text-left">
+            <a href="{% url 'event1_register' %}" class="btn btn-info"><i class="fas fa-user-plus"></i> ลงทะเบียน</a>
+        </div>
+        <!--รวมโครงการ-->
+        {% if meeting %}
+            <h5 class="text-right">{{ meetcount }} โครงการ</h5>
+        {% endif %}
+        
+        <div class="data-transection">
+            <!--ตารางการประชุม-->
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr class="text-center">
+                        <tr class="text-center">
+                        <th scope="col">ชื่อโครงการ</th>
+                        <th scope="col">วัน-เวลา</th>
+                        <th scope="col">สถานที่</th>
+                        <th scope="col">จัดการ</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% if meeting %}
+                    {% for meeting in meeting %}
+                        <tr class="text-center">
+                            <td>{{ meeting.name }}</td>
+                            <td>{{ meeting.date |date:"d/m/Y" }} <br> {{ meeting.from_time |time:"H:i" }}น. - {{ meeting.to_time |time:"H:i" }}น.</td>
+                            <td>{{ meeting.locality |linebreaksbr}}</td>
+                            <td><a href="{% url 'meeting_detail' meeting.id %}" class="btn btn-warning"><i class="fas fa-eye"></i> รายละเอียด</a></td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="10" class="text-center">ไม่มีข้อมูลการประชุม</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <!--pagination -->
+        {% if meeting %}
+            <div class="col-md-4 mx-auto">
+                <div class="pagination ">
+                    {% if meeting.has_previous %}
+                        <a class="pagination-action" href="?page=1">
+                            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                        </a>
+                        <a class="pagination-action" href="?page={{ meeting.previous_page_number }}">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                
+                    <span class="pagination-current">{{ meeting.number }}</span>
+                    <span class="pagination-of">of</span>
+                    <span class="pagination-total">{{ meeting.paginator.num_pages }}</span>
+                
+                    {% if meeting.has_next %}
+                        <a class="pagination-action" href="?page={{ meeting.next_page_number }}">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </a>
+                        <a class="pagination-action" href="?page={{ meeting.paginator.num_pages }}">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        <br>
+    </div>
+{% endblock content %}

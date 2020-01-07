@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} โครงการฝึกอบรม {% endblock title %}
+{% block content %}
+    <section id="create" class="bg-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div class="row page-titles">
+                        <div class="col-md-12 align-self-center">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'training' %}"><i class="fas fa-address-card"></i> การฝึกอบรม</a></li>
+                                <li class="breadcrumb-item active">{% block name %}{{ training.name }}{% endblock name %}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-info text-white text-center"><br>
+                            <h3> รายละเอียดโครงการ</h3><br>
+                        </div><br>
+                        <div class="card-body">
+                            <form action="{% url 'training_detail' training.id %}" method="POST">
+                                {% csrf_token %}
+                                    <div class="form-group">
+                                        <h4>{{ training.name }}</h4><hr><br>
+                                        <p style="text-indent: 2.5em;">{{ training.detail }} </p><br>
+
+                                        <h4>วัน-เวลา</h4>
+                                        <p style="text-indent: 2.5em;">{{ training.date |date:"d/m/Y"}} | {{ training.from_time |time:"H:i" }}น. - {{ training.to_time |time:"H:i" }}น.</p><hr>
+
+                                        <h4>สถานที่</h4>
+                                        <p style="text-indent: 2.5em;">{{ training.locality }} </p><hr>
+
+                                        <h4>ข้อมูลเพิ่มเติม</h4>
+                                        <a href={{ training.link }} target="_blank">{{ training.link }}</a>
+                                    </div><hr>
+
+                                <!--Button-->
+                                <div class="text-center">
+                                    <a href="{% url 'training' %}" class="btn btn-danger">กลับไปหน้าฝึกอบรม</a>
+                                </div>
+                                <input type="hidden" name="trainingid" id="trainingid" value="{{ training.id }}">
+                            </form>
+                        </div>
+                    </div>
+	            </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

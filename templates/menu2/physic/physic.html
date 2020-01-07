@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}  รายวิชาฟิสิกส์ {% endblock title %}
+{% block content %}
+<section id="create" class="bg-light py-4">
+    <div class="container-fluid"><br><br>
+        <h2 class="text-center"><i class="fas fa-atom"></i> รายวิชาฟิสิกส์</h2><br><hr>
+        <div class="row">
+        <!--ตารางแสดงข้อมูล-->
+            <div class="col-md-6 mx-auto">
+            <h4 class="text-center">ระดับมัธยมศึกษาตอนต้น</h4>
+            {% if physics %}
+                <div class="text-right">{{ phy_countmid }} การทดลอง</div>
+            {% endif %}
+
+                <div class="table-responsive">
+                    <table class="table table-bordered"><br>
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                                <th scope="col">รหัสวิชา</th>
+                                <th scope="col">การทดลองที่</th>
+                                <th scope="col">ชื่อการทดลอง</th>
+                                <th scope="col">จัดการ</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% if physics %}
+                            {% for physics in physics %}
+                            <tr class="text-center" >
+                                <td>{{ physics.course_number }}</td>
+                                <td>{{ physics.experiment_number }}</td>
+                                <td>{{ physics.experiment_name }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">จัดการ</button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{% url 'physic_detail' physics.id %}"><i class="fas fa-eye"></i> ดูข้อมล</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-file-pdf"></i> พิมพ์ข้อมูล</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-link"></i> แชร์ออนไลน์</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" class="text-center">ไม่มีข้อมูลการทดลอง</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--pagination -->
+                {% if physics %}
+                    <div class="col-md-6 mx-auto">
+                        <div class="pagination ">
+                            {% if physics.has_previous %}
+                                <a class="pagination-action" href="?page=1">
+                                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ physics.previous_page_number }}">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        
+                            <span class="pagination-current">{{ physics.number }}</span>
+                            <span class="pagination-of">of</span>
+                            <span class="pagination-total">{{ physics.paginator.num_pages }}</span>
+                        
+                            {% if physics.has_next %}
+                                <a class="pagination-action" href="?page={{ physics.next_page_number }}">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ physics.paginator.num_pages }}">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %} 
+            </div>
+            
+
+            <!--ม.ปลาย-->
+            <div class="col-md-6 mx-auto">
+            <h4 class="text-center">ระดับมัธยมศึกษาตอนปลาย</h4>
+            {% if physic %}
+                <div class="text-right">{{ phy_counthi }} การทดลอง</div>
+            {% endif %}
+
+                <div class="table-responsive">
+                    <table class="table table-bordered"><br>
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                                <th scope="col">รหัสวิชา</th>
+                                <th scope="col">การทดลองที่</th>
+                                <th scope="col">ชื่อการทดลอง</th>
+                                <th scope="col">จัดการ</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% if physic %}
+                            {% for physic in physic %}
+                                <tr class="text-center" >
+                                    <td>{{ physic.course_number }}</td>
+                                    <td>{{ physic.experiment_number }}</td>
+                                    <td>{{ physic.experiment_name }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">จัดการ</button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{% url 'physic_detail' physic.id %}"><i class="fas fa-eye"></i> ดูข้อมล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-file-pdf"></i> พิมพ์ข้อมูล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-link"></i> แชร์ออนไลน์</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" class="text-center">ไม่มีข้อมูลการทดลอง</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--pagination -->
+                {% if physic %}
+                    <div class="col-md-6 mx-auto">
+                        <div class="pagination">
+                            {% if physic.has_previous %}
+                                <a class="pagination-action" href="?page=1">
+                                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ physic.previous_page_number }}">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        
+                            <span class="pagination-current">{{ physic.number }}</span>
+                            <span class="pagination-of">of</span>
+                            <span class="pagination-total">{{ physic.paginator.num_pages }}</span>
+                        
+                            {% if physic.has_next %}
+                                <a class="pagination-action" href="?page={{ physic.next_page_number }}">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ physic.paginator.num_pages }}">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

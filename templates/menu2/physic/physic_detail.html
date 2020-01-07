@@ -1,0 +1,304 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} {{ physics.experiment_name }} {% endblock title %}
+{% block content %}
+    <section id="create" class="bg-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div class="row page-titles">
+                            <div class="col-md-12 align-self-center">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'physic' %}"><i class="fas fa-atom"></i> รายวิชาฟิสิกส์</a></li>
+                                    <li class="breadcrumb-item active">{% block name %} {{ physics.experiment_name }} {% endblock name %}</li>
+                                </ol>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-info text-white text-center"><br>
+                            <h3> ข้อมูลการจัดการความปลอดภัย<br>จากการทดลองทางวิทยาศาสตร์ ระดับมัธยมศึกษา</h3><br>
+                        </div><br>
+                        <div class="card-body">
+                            <form action="{% url 'physic_detail' physics.id %}" method="POST">
+                                {% csrf_token %}
+                                    <h5>1. เกี่ยวกับรายวิชา</h5>
+                                    <div class="form-group">
+                                        <label for="name" class="mb-2 mr-sm-4">รหัสวิชา : {{ physics.course_number }}</label><br>
+                                        <label for="name">ชื่อรายวิชา : {{ physics.course }}</label><br>
+                                        <label for="name">ระดับชั้น : {{ physics.degree }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">ชื่อหนังสือ : {{ physics.book_name }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">เล่มที่ : {{ physics.book_number }}</label><br>
+                                    </div><hr>
+
+                                    <h5>2. การทดลอง</h5>
+                                    <div class="form-group">
+                                        <label for="thainame" class="mb-2 mr-sm-4">การทดลองที่ : {{ physics.experiment_number }}</label><br>
+                                        <label for="chemname" class="mb-2 mr-sm-4">ชื่อการทดลอง : {{ physics.experiment_name }}</label>
+                                    </div><hr>
+
+                                    <h5>3. สารเคมีที่ใช้</h5>
+                                    <div class="form-group">
+                                        <label for="name" class="mb-2 mr-sm-4">ชื่อสารเคมี : {{ physics.chemical_name_1 }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">สมบัติของสารเคมี : {{ physics.chemical_properties_1 }}</label><br>
+                                        <p>สัญลักษณ์ GHS : </p>
+                                        <div class="row">
+                                        {% if physics %}
+                                            <!--รุปที่ 1-->
+                                            <div class="col-md-1 col-lg-2 mb-1">
+                                                <div class="card listing-preview">
+                                                    <div class="text-center">
+                                                        <img src="{{ physics.ghs_sign_1.url }}" style="width:100px;"><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!--รุปที่ 2-->
+                                            <div class="col-md-1 col-lg-2 mb-1">
+                                                <div class="card listing-preview">
+                                                    <div class="text-center">
+                                                        <img src="{{ physics.ghs_sign_2.url }}" style="width:100px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!--รุปที่ 3-->
+                                            <div class="col-md-1 col-lg-2 mb-1">
+                                                <div class="card listing-preview">
+                                                    <div class="text-center">
+                                                        <img src="{{ physics.ghs_sign_3.url }}" style="width:100px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--รุปที่ 4-->
+                                            <div class="col-md-1 col-lg-2 mb-1">
+                                                <div class="card listing-preview">
+                                                    <div class="text-center">
+                                                        <img src="{{ physics.ghs_sign_4.url }}" style="width:100px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--รุปที่ 5-->
+                                            <div class="col-md-1 col-lg-2 mb-1">
+                                                <div class="card listing-preview">
+                                                    <div class="text-center">
+                                                        <img src="{{ physics.ghs_sign_5.url }}" style="width:100px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--รุปที่ 6-->
+                                            <div class="col-md-1 col-lg-2 mb-1">
+                                                <div class="card listing-preview">
+                                                    <div class="text-center">
+                                                        <img src="{{ physics.ghs_sign_6.url }}" style="width:100px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--รุปที่ 7-->
+                                            <div class="col-md-1 col-lg-2 mb-1">
+                                                <div class="card listing-preview">
+                                                    <div class="text-center">
+                                                        <img src="{{ physics.ghs_sign_7.url }}" style="width:100px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--รุปที่ 8-->
+                                            <div class="col-md-1 col-lg-2 mb-1">
+                                                <div class="card listing-preview">
+                                                    <div class="text-center">
+                                                        <img src="{{ physics.ghs_sign_8.url }}" style="width:100px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--รุปที่ 9-->
+                                            <div class="col-md-1 col-lg-2 mb-1">
+                                                <div class="card listing-preview">
+                                                    <div class="text-center">
+                                                        <img src="{{ physics.ghs_sign_9.url }}" style="width:100px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        </div>
+                                    </div><hr>
+
+                                    <h5>4. อุปกรณ์ป้องกันอันตราย</h5>
+                                    <div class="form-group">
+                                        <ul>
+                                            <!-- อุปกรณ์ป้องกันศีรษะ -->
+                                            <div class="row">
+                                                <div class="col-md-1 col-lg-3 mb-1">
+                                                    <div class="text-center">
+                                                    {% if head %}
+                                                    <li>
+                                                        <label for="name" class="mb-2 mr-sm-4">อุปกรณ์ป้องกันศีรษะ </label><br>
+                                                        {% for head in head %}
+                                                            <img src="{{ head.ppe_sign.url }}" style="width:100px;"><br>
+                                                            <label for="name" class="mb-2 mr-sm-4">{{ head.name }} </label>
+                                                        {% endfor %}
+                                                    </li>
+                                                    {% else %}
+                                                        <label for="name" class="mb-2 mr-sm-4"> </label>    
+                                                    {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <!-- อุปกรณ์ป้องกันใบหน้าและตา -->
+                                            <div class="row">
+                                                <div class="col-md-1 col-lg-3 mb-1">
+                                                    <div class="text-center">
+                                                        {% if face_and_eyes %}
+                                                        <li>
+                                                            <label for="name" class="mb-2 mr-sm-4">อุปกรณ์ป้องกันใบหน้าและตา </label><br>
+                                                            {% for face_and_eyes in face_and_eyes %}
+                                                                <img src="{{ face_and_eyes.ppe_sign.url }}" style="width:100px;"><br>
+                                                                <label for="name" class="mb-2 mr-sm-4">{{ face_and_eyes.name }} </label>
+                                                            {% endfor %}
+                                                        </li>
+                                                        {% else %}
+                                                            <label for="name" class="mb-2 mr-sm-4"> </label>    
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <!-- อุปกรณ์ป้องกันหู -->
+                                            <div class="row">
+                                                <div class="col-md-1 col-lg-3 mb-1">
+                                                    <div class="text-center">
+                                                        {% if ear %}
+                                                        <li>
+                                                            <label for="name" class="mb-2 mr-sm-4">อุปกรณ์ป้องกันหู </label><br>
+                                                            {% for ear in ear %}
+                                                                <img src="{{ ear.ppe_sign.url }}" style="width:100px;"><br>
+                                                                <label for="name" class="mb-2 mr-sm-4">{{ ear.name }} </label>
+                                                            {% endfor %}
+                                                        </li>
+                                                        {% else %}
+                                                            <label for="name" class="mb-2 mr-sm-4"> </label>    
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <!-- อุปกรณ์ป้องกันการหายใจ -->
+                                            <div class="row">
+                                                <div class="col-md-1 col-lg-3 mb-1">
+                                                    <div class="text-center">
+                                                        {% if respiratory %}
+                                                        <li>
+                                                            <label for="name" class="mb-2 mr-sm-4">อุปกรณ์ป้องกันการหายใจ </label><br>
+                                                            {% for  respiratory in  respiratory %}
+                                                                <img src="{{  respiratory.ppe_sign.url }}" style="width:100px;"><br>
+                                                                <label for="name" class="mb-2 mr-sm-4">{{  respiratory.name }} </label>
+                                                            {% endfor %}
+                                                        </li>
+                                                        {% else %}
+                                                            <label for="name" class="mb-2 mr-sm-4"> </label>    
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- อุปกรณ์ป้องกันลำตัว -->
+                                            <div class="row">
+                                                <div class="col-md-1 col-lg-3 mb-1">
+                                                    <div class="text-center">
+                                                        {% if body %}
+                                                        <li>
+                                                            <label for="name" class="mb-2 mr-sm-4">อุปกรณ์ป้องกันลำตัว</label><br>
+                                                            {% for  body in  body %}
+                                                                <img src="{{  body.ppe_sign.url }}" style="width:100px;"><br>
+                                                                <label for="name" class="mb-2 mr-sm-4">{{  body.name }} </label>
+                                                            {% endfor %}
+                                                        </li>
+                                                        {% else %}
+                                                            <label for="name" class="mb-2 mr-sm-4"> </label>    
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <!-- อุปกรณ์ป้องกันมือ -->
+                                            <div class="row">
+                                                <div class="col-md-1 col-lg-3 mb-1">
+                                                    <div class="text-center">
+                                                        {% if hand %}
+                                                        <li>
+                                                            <label for="name" class="mb-2 mr-sm-4">อุปกรณ์ป้องกันมือ </label><br>
+                                                            {% for hand in hand %}
+                                                                <img src="{{  hand.ppe_sign.url }}" style="width:100px;"><br>
+                                                                <label for="name" class="mb-2 mr-sm-4">{{  hand.name }} </label>
+                                                            {% endfor %}
+                                                        </li>
+                                                        {% else %}
+                                                            <label for="name" class="mb-2 mr-sm-4"> </label>    
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <!-- อุปกรณ์ป้องกันเท้า -->
+                                            <div class="row">
+                                                <div class="col-md-1 col-lg-3 mb-1">
+                                                    <div class="text-center">
+                                                        {% if foot %}
+                                                        <li>
+                                                            <label for="name" class="mb-2 mr-sm-4">อุปกรณ์ป้องกันเท้า </label><br>
+                                                            {% for foot in foot %}
+                                                                <img src="{{ foot.ppe_sign.url }}" style="width:100px;"><br>
+                                                                <label for="name" class="mb-2 mr-sm-4">{{  foot.name }} </label>
+                                                            {% endfor %}
+                                                        </li>
+                                                        {% else %}
+                                                            <label for="name" class="mb-2 mr-sm-4"> </label>    
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ul>
+                                    </div><hr>
+
+                                    <h5>5. ความเป็นอันตรายที่เกี่ยวข้องกับการทดลอง</h5>
+                                    <div class="form-group">
+                                        <label for="name" class="mb-2 mr-sm-4">{{ physics.hazards }}</label>
+                                    </div><hr>
+
+                                    <h5>6. การทิ้งของเสีย</h5>
+                                    <div class="form-group">
+                                        <label for="name" class="mb-2 mr-sm-4">W1 : {{ physics.w1 }} &nbsp;&nbsp; กลุ่มของของเสีย : {{ physics.waste_group_w1 }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">W2 : {{ physics.w2 }} &nbsp;&nbsp; กลุ่มของของเสีย : {{ physics.waste_group_w2 }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">W3 : {{ physics.w3 }} &nbsp;&nbsp; กลุ่มของของเสีย : {{ physics.waste_group_w3 }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">W4 : {{ physics.w4 }} &nbsp;&nbsp; กลุ่มของของเสีย : {{ physics.waste_group_w4 }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">W5 : {{ physics.w5 }} &nbsp;&nbsp; กลุ่มของของเสีย : {{ physics.waste_group_w5 }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">W6 : {{ physics.w6 }} &nbsp;&nbsp; กลุ่มของของเสีย : {{ physics.waste_group_w6 }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">W7 : {{ physics.w7 }} &nbsp;&nbsp; กลุ่มของของเสีย : {{ physics.waste_group_w7 }}</label><br>
+                                        <label for="name" class="mb-2 mr-sm-4">Wx : {{ physics.wx }} &nbsp;&nbsp; กลุ่มของของเสีย : {{ physics.waste_group_wx }}</label><br>
+                                    </div><hr>
+
+                                    <h5>7. ข้อแนะนำเพิ่มเติมเกี่ยวข้องกับการจัดการของเสียอันตรายจากการทดลอง</h5>
+                                    <div class="form-group">
+                                        <label for="name" class="mb-2 mr-sm-4"> {{ physics.suggestion }}</label>
+                                    </div>
+                                    <hr>
+
+                                <!--Button-->
+                                <div class="text-center">
+                                    <a href="{% url 'physic' %}" class="btn btn-danger">กลับไปหน้ารายวิชาฟิสิกส์</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+	            </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

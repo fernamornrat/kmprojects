@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} รายวิชาชีววิทยา {% endblock title %}
+{% block content %}
+    <section id="create" class="bg-light py-4">
+    <div class="container-fluid"><br>
+         <h2 class="text-center"><i class="fas fa-seedling"></i> รายวิชาชีววิทยา</h2><br><hr>
+        <!--ตารางแสดงข้อมูล-->
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+            <h4 class="text-center">ระดับมัธยมศึกษาตอนต้น</h4>
+            {% if biologys %}
+                <div class="text-right">{{ bio_countmid }} การทดลอง</div>
+            {% endif %}
+                <div class="table-responsive">
+                    <table class="table table-bordered"><br>
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                                <th scope="col">รหัสวิชา</th>
+                                <th scope="col">การทดลองที่</th>
+                                <th scope="col">ชื่อการทดลอง</th>
+                                <th scope="col">จัดการ</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% if biologys %}
+                            {% for biologys in biologys %}
+                                <tr class="text-center" >
+                                    <td>{{ biologys.course_number }}</td>
+                                    <td>{{ biologys.experiment_number }}</td>
+                                    <td>{{ biologys.experiment_name }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">จัดการ</button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{% url 'biology_detail' biologys.id %}"><i class="fas fa-eye"></i> ดูข้อมล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-file-pdf"></i> พิมพ์ข้อมูล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-link"></i> แชร์ออนไลน์</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" class="text-center">ไม่มีข้อมูลการทดลอง</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--pagination -->
+                {% if biologys %}
+                    <div class="col-md-6 mx-auto">
+                        <div class="pagination">
+                            {% if biologys.has_previous %}
+                                <a class="pagination-action" href="?page=1">
+                                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ biologys.previous_page_number }}">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        
+                            <span class="pagination-current">{{ biologys.number }}</span>
+                            <span class="pagination-of">of</span>
+                            <span class="pagination-total">{{ biologys.paginator.num_pages }}</span>
+                        
+                            {% if biologys.has_next %}
+                                <a class="pagination-action" href="?page={{ biologys.next_page_number }}">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ biologys.paginator.num_pages }}">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6 mx-auto">
+            <h4 class="text-center">ระดับมัธยมศึกษาตอนปลาย</h4>
+            {% if biology %}
+                <div class="text-right">{{ bio_counthi }} การทดลอง</div>
+            {% endif %}
+                <div class="table-responsive">
+                    <table class="table table-bordered"><br>
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                                <th scope="col">รหัสวิชา</th>
+                                <th scope="col">การทดลองที่</th>
+                                <th scope="col">ชื่อการทดลอง</th>
+                                <th scope="col">จัดการ</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% if biology %}
+                            {% for biology in biology %}
+                                <tr class="text-center" >
+                                    <td>{{ biology.course_number }}</td>
+                                    <td>{{ biology.experiment_number }}</td>
+                                    <td>{{ biology.experiment_name }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">จัดการ</button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{% url 'biology_detail' biology.id %}"><i class="fas fa-eye"></i> ดูข้อมล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-file-pdf"></i> พิมพ์ข้อมูล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-link"></i> แชร์ออนไลน์</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" class="text-center">ไม่มีข้อมูลการทดลอง</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--pagination -->
+                {% if biology %}
+                    <div class="col-md-6 mx-auto">
+                        <div class="pagination">
+                            {% if biology.has_previous %}
+                                <a class="pagination-action" href="?page=1">
+                                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ biology.previous_page_number }}">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        
+                            <span class="pagination-current">{{ biology.number }}</span>
+                            <span class="pagination-of">of</span>
+                            <span class="pagination-total">{{ biology.paginator.num_pages }}</span>
+                        
+                            {% if biology.has_next %}
+                                <a class="pagination-action" href="?page={{ biology.next_page_number }}">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ biology.paginator.num_pages }}">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %} ถาม-ตอบ {% endblock title %}
+{% block content %}
+    <section id="create" class="bg-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-light text-navy text-center">
+                            <br><h4> แสดงความคิดเห็น</h4>
+                            <div class="card-header bg-light text-navy text-left">
+                                <div class="card-body">
+                                    <form action="{% url 'add_comment' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="username">ชื่อผู้ใช้ :</label>
+                                            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" name="username">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">อีเมล์ :</label>
+                                            <input type="email" class="form-control" placeholder="กรุณากรอกอีเมล์" name="email">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="comment">แสดงความคิดเห็น :</label>
+                                            <textarea class="form-control" rows="5" placeholder="กรุณาพิมพ์ข้อความแสดงความคิดเห็น" name="comment"></textarea>
+                                        </div>
+
+                                        <!--Button-->
+                                        <div class="text-center">
+                                            <button class="btn btn-outline-success" type="submit"><i class="fas fa-paper-plane"></i> แสดงความคิดเห็น</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+	            </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

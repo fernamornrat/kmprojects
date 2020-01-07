@@ -1,0 +1,123 @@
+{% load static %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand">
+                <a class="navbar-brand" href="#">
+                <img src="{% static 'img/experiment.png'%}" class="logo" alt="" style="width:54px;">
+                    <!--การจัดการความปลอดภัยจากการทดลองทางวิทยาศาสตร์ ระดับมัธยมศึกษา-->
+                </a>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
+                <!--เมนูที่ 1 หน้าหลัก-->
+                <li 
+                    {% if '/' == request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'index' %}"> หน้าหลัก</a>
+                </li>
+
+                <!--เมนูที่ 2 รายวิชา-->
+                <li 
+                    {% if '/subject/' == request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="{% url 'physic' %}"> รายวิชา</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'physic' %}"><i class="fas fa-atom"></i> ฟิสิกส์</a>
+                            <a class="dropdown-item" href="{% url 'chemistry' %}"><i class="fas fa-vial"></i> เคมี</a>
+                            <a class="dropdown-item" href="{% url 'biology' %}"><i class="fas fa-seedling"></i> ชีววิทยา</a>
+                            <a class="dropdown-item" href="{% url 'science' %}"><i class="fas fa-award"></i> โครงงานวิทยาศาสตร์</a>
+                        </div>
+                    </div>
+                </li>
+
+                <!--เมนูที่ 3 กิจกรรม-->
+                <li 
+                    {% if '/event/' == request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> โครงการ</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'meeting' %}"><i class="fas fa-calendar-alt"></i> การประชุม</a>
+                            <a class="dropdown-item" href="{% url 'training' %}"><i class="fas fa-business-time"></i> ฝึกอบรม</a>
+                            <a class="dropdown-item" href="{% url 'seminar' %}"><i class="fas fa-address-card"></i> สัมมนา</a>
+                            <a class="dropdown-item" href="{% url 'converse' %}"><i class="fas fa-bullhorn"></i> เสวนา</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <!--เมนูที่ 5 ผลรวม-->
+                <li 
+                    {% if '/km/sumary' == request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'sumary' %}"><i class="fas fa-chart-bar"></i> สรุป</a>
+                </li>
+
+                <!--เมนูที่ 4 ถามตอบ-->
+                <li 
+                    {% if '/comment/' in request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="{% url 'comment' %}"><i class="fas fa-comment"></i> ถาม-ตอบ</a>
+                </li>
+
+                <!--เข้าสู่ระบบ(เฉพาะแอดมิน)-->
+                {% if user.is_authenticated %}
+                <li 
+                    {% if '/' in request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link">
+                    เข้าสู่ระบบ : {{ user.username }}</a>
+                </li>
+                <!--<li class="nav-item">
+                    <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
+                    </a>
+                    <form action="{% url 'logout' %}" method="POST" id="logout">
+                    {% csrf_token %}
+                    <input type="hidden">
+                    </form>  
+                </li>-->
+                {% else %}
+                <li 
+                    {% if '/admin/' in request.path %}
+                    class="nav-item active"
+                    {% else %}
+                    class="nav-item"
+                    {% endif %}
+                >
+                    <a class="nav-link" href="http://localhost:8000/admin/" target="_blank"><i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ</a>
+                </li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>

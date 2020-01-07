@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} {{ meeting.name }} {% endblock title %}
+{% block content %}
+    <section id="create" class="bg-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div class="row page-titles">
+                        <div class="col-md-12 align-self-center">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'meeting' %}"><i class="fas fa-address-card"></i> การประชุม</a></li>
+                                <li class="breadcrumb-item active">{% block name %}{{ meeting.name }}{% endblock name %}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-info text-white text-center"><br>
+                            <h3> รายละเอียดโครงการ</h3><br>
+                        </div><br>
+                        <div class="card-body">
+                            <form action="{% url 'meeting_detail' meeting.id %}" method="POST">
+                                {% csrf_token %}
+                                    <div class="form-group">
+                                        <h4>{{ meeting.name }}</h4><hr><br>
+                                        <p style="text-indent: 2.5em;">{{ meeting.detail }} </p><br>
+
+                                        <h4>วัน-เวลา</h4>
+                                        <p style="text-indent: 2.5em;">{{ meeting.date |date:"d/m/Y"}} | {{ meeting.from_time |time:"H:i" }}น. - {{ meeting.to_time |time:"H:i" }}น.</p><hr>
+
+                                        <h4>สถานที่</h4>
+                                        <p style="text-indent: 2.5em;">{{ meeting.locality }} </p><hr>
+
+                                        <h4>ข้อมูลเพิ่มเติม</h4>
+                                        <a href={{ meeting.link }} target="_blank">{{ meeting.link }}</a>
+                                    </div><hr>
+
+                                <!--Button-->
+                                <div class="text-center">
+                                    <a href="{% url 'meeting' %}" class="btn btn-danger">กลับไปหน้าการประชุม</a>
+                                </div>
+                                <input type="hidden" name="meetingid" id="meetingid" value="{{ meeting.id }}">
+                            </form>
+                        </div>
+                    </div>
+	            </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

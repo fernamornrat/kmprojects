@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} รายวิชาเคมี {% endblock title %}
+{% block content %}
+    <section id="create" class="bg-light py-4">
+    <div class="container-fluid"><br>
+         <h2 class="text-center"><i class="fas fa-vial"></i> รายวิชาเคมี</h2><br><hr>
+        <!--ตารางแสดงข้อมูล-->
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+            <h4 class="text-center">ระดับมัธยมศึกษาตอนต้น</h4>
+            {% if chemistrys %}
+                <div class="text-right">{{ chem_countmid }} การทดลอง</div>
+            {% endif %}
+                <div class="table-responsive">
+                    <table class="table table-bordered"><br>
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                                <th scope="col">รหัสวิชา</th>
+                                <th scope="col">การทดลองที่</th>
+                                <th scope="col">ชื่อการทดลอง</th>
+                                <th scope="col">จัดการ</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% if chemistrys %}
+                            {% for chemistrys in chemistrys %}
+                                <tr class="text-center" >
+                                    <td>{{ chemistrys.course_number }}</td>
+                                    <td>{{ chemistrys.experiment_number }}</td>
+                                    <td>{{ chemistrys.experiment_name }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">จัดการ</button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{% url 'chemistry_detail' chemistrys.id %}"><i class="fas fa-eye"></i> ดูข้อมล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-file-pdf"></i> พิมพ์ข้อมูล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-link"></i> แชร์ออนไลน์</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" class="text-center">ไม่มีข้อมูลการทดลอง</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--pagination -->
+                {% if chemistrys %}
+                    <div class="col-md-6 mx-auto">
+                        <div class="pagination">
+                            {% if chemistrys.has_previous %}
+                                <a class="pagination-action" href="?page=1">
+                                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ chemistrys.previous_page_number }}">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        
+                            <span class="pagination-current">{{ chemistrys.number }}</span>
+                            <span class="pagination-of">of</span>
+                            <span class="pagination-total">{{ chemistrys.paginator.num_pages }}</span>
+                        
+                            {% if chemistrys.has_next %}
+                                <a class="pagination-action" href="?page={{ chemistrys.next_page_number }}">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ chemistrys.paginator.num_pages }}">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-6 mx-auto">
+            <h4 class="text-center">ระดับมัธยมศึกษาตอนปลาย</h4>
+            {% if chemistry %}
+                <div class="text-right">{{ chem_counthi }} การทดลอง</div>
+            {% endif %}
+                <div class="table-responsive">
+                    <table class="table table-bordered"><br>
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                                <th scope="col">รหัสวิชา</th>
+                                <th scope="col">การทดลองที่</th>
+                                <th scope="col">ชื่อการทดลอง</th>
+                                <th scope="col">จัดการ</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% if chemistry %}
+                            {% for chemistry in chemistry %}
+                                <tr class="text-center" >
+                                    <td>{{ chemistry.course_number }}</td>
+                                    <td>{{ chemistry.experiment_number }}</td>
+                                    <td>{{ chemistry.experiment_name }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">จัดการ</button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{% url 'chemistry_detail' chemistry.id %}"><i class="fas fa-eye"></i> ดูข้อมล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-file-pdf"></i> พิมพ์ข้อมูล</a>
+                                                <a class="dropdown-item" href="#"><i class="fas fa-link"></i> แชร์ออนไลน์</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" class="text-center">ไม่มีข้อมูลการทดลอง</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--pagination -->
+                {% if chemistry %}
+                    <div class="col-md-6 mx-auto">
+                        <div class="pagination">
+                            {% if chemistry.has_previous %}
+                                <a class="pagination-action" href="?page=1">
+                                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ chemistry.previous_page_number }}">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        
+                            <span class="pagination-current">{{ chemistry.number }}</span>
+                            <span class="pagination-of">of</span>
+                            <span class="pagination-total">{{ chemistry.paginator.num_pages }}</span>
+                        
+                            {% if chemistry.has_next %}
+                                <a class="pagination-action" href="?page={{ chemistry.next_page_number }}">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                                <a class="pagination-action" href="?page={{ chemistry.paginator.num_pages }}">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
